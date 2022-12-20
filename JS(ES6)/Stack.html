@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 스택 기능 - 선입 후출(FILO)
+        // 크기제한 10
+        // push - 데이터를 들어온 순서대로 크기 10까지 삽입하는기능 정해진 크기를 벗어나면 에러발생
+        // pop - 들어온 데이터를 역순으로 반환한다.데이터가 없을경우 에러발생
+        function Stack(size){
+            this.data=[];//들어오는 데이터를 담는다.
+            //클래스가 인스턴스화될 때 길이를지정
+            this.size=size;//스택의 크기를 제한한다. 인스턴스 생성시 지정되며 변경 불가능
+            this.position=0;//삽입:삽입시위치, 반환:반환시위치-1, 0:초기값, 데이타가 없을때 // 
+        }
+
+        Stack.prototype.push = function(data){
+            //길이를 확인한다.
+            
+            if (this.size === this.position) {
+                throw new Error('더이상 데이터를 넣을 수 없습니다.');
+            }   
+            //순서대로 값을 넣는다.
+            this.data[this.position++]=data;
+        }
+
+        Stack.prototype.pop = function(){
+            //데이터가 없을경우 에러 발생
+            if(this.position===0){
+                throw new Error('데이터가 없습니다.');
+            }
+
+            //포지션의 위치에서 이전 위치의 값을 반환한다.
+            let r = this.data[--this.position];
+            delete this.data[this.position];
+            return r;
+        }
+
+        
+    </script>
+</body>
+</html>
